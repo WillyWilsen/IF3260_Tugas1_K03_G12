@@ -74,6 +74,9 @@ function rotate(vertexData, angle) {
 }
 
 function render(gl, vertexData) {
+    // clear canvas
+    gl.clear(gl.COLOR_BUFFER_BIT);
+
     // load vertexData into buffer
     gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(vertexData), gl.STATIC_DRAW);
 
