@@ -1,17 +1,7 @@
 // vertexData
-var vertexData = [
-    // square
-    0.5, 0.5,
-    0.5, -0.5,
-    -0.5, -0.5,
-    -0.5, 0.5
-];
-var colors = [
-    1, 1, 1,
-    1, 1, 1,
-    1, 1, 1,
-    1, 1, 1
-]
+var vertexData;
+var colors;
+var is_rotating;
 var interval;
 var vertex_idx;
 
@@ -93,20 +83,20 @@ window.onload = function init() {
     }
     gl.useProgram(program);
 
-    // render
-    render(gl, program);
-
     // ROTATE
     rotate.onclick = function() {
-        r.value = '';
-        g.value = '';
-        b.value = '';
-        rgb_form.hidden = true;
-        interval = setInterval(function() {
-            vertexData = rotateVertex(vertexData, 1);
-            // render
-            render(gl, program);
-        }, 10);
+        if (!is_rotating) {
+            r.value = '';
+            g.value = '';
+            b.value = '';
+            rgb_form.hidden = true;
+            is_rotating = true;
+            interval = setInterval(function() {
+                vertexData = rotateVertex(vertexData, 1);
+                // render
+                render(gl, program);
+            }, 10);
+        }
     }
 
     move_corner.onclick = function() {
@@ -115,11 +105,13 @@ window.onload = function init() {
         g.value = '';
         b.value = '';
         rgb_form.hidden = true;
+        is_rotating = false;
     }
 
     color_corner.onclick = function() {
         clearInterval(interval);
         rgb_form.hidden = false;
+        is_rotating = false;
     }
 
     canvas.onmousedown = function(e) {
@@ -180,10 +172,21 @@ window.onload = function init() {
 
     // SAVE FILE
     save_btn.onclick = function() {
-        var vertexString = '';
-        for (let i = 0; i < vertexData.length; i += 2) {
-            vertexString += `${vertexData[i]} ${vertexData[i + 1]}\n`
+        var vertexString = '[';
+        for (let i = 0; i < vertexData.length; i++) {
+            vertexString += `${vertexData[i]}`
+            if (i != vertexData.length - 1) {
+                vertexString += ', ';
+            }
         }
+        vertexString += ']\r\n\r\n[';
+        for (let i = 0; i < colors.length; i++) {
+            vertexString += `${colors[i]}`
+            if (i != colors.length - 1) {
+                vertexString += ', ';
+            }
+        }
+        vertexString += ']';
         const a = document.createElement('a');
         a.href = window.URL.createObjectURL(new Blob([vertexString], {type: 'text/plain'}));
         a.download = 'square.txt';
