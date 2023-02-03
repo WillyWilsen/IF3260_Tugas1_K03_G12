@@ -5,21 +5,25 @@
 <script type="text/javascript" src="square.js"></script>
 </head>
 <body>
-    <canvas id="square-canvas" width="512" height="512">
-        Oops ... your browser doesn't support the HTML5 canvas element
-    </canvas>
-    <br>
-    <input type="radio" value="rotate" name="choice" id="rotate">Rotate<br>
-    <input type="radio" value="move-corner" name="choice" id="move-corner">Move Corner<br>
-    <input type="radio" value="color-corner" name="choice" id="color-corner">Color Corner<br>
-    <div id="rgb-form" hidden>
-        <p>Interval 0 - 255</p>
-        <input type="number" placeholder="Red" style="width: 50px;" id="r">
-        <input type="number" placeholder="Green" style="width: 50px;" id="g">
-        <input type="number" placeholder="Blue" style="width: 50px;" id="b">
-        <button id="rgb-all">All Corner</button>
+    <h2>SQUARE WEB GL</h2>
+    <input type="file" accept="text/*" id="load-file">
+    <div id="web-gl" hidden>
+        <canvas id="square-canvas" width="512" height="512">
+            Oops ... your browser doesn't support the HTML5 canvas element
+        </canvas>
+        <br>
+        <input type="radio" value="rotate" name="choice" id="rotate">Rotate<br>
+        <input type="radio" value="move-corner" name="choice" id="move-corner">Move Corner<br>
+        <input type="radio" value="color-corner" name="choice" id="color-corner">Color Corner<br>
+        <div id="rgb-form" hidden>
+            <p>Interval 0 - 255</p>
+            <input type="number" placeholder="Red" style="width: 50px;" id="r">
+            <input type="number" placeholder="Green" style="width: 50px;" id="g">
+            <input type="number" placeholder="Blue" style="width: 50px;" id="b">
+            <button id="rgb-all">All Corner</button>
+        </div>
+        <br>
+        <button id="save-btn">Save Square</button>
     </div>
-    <br>
-    <button id="save-btn">Save Square</button>
 </body>
 </html>

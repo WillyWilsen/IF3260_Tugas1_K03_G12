@@ -16,6 +16,8 @@ var interval;
 var vertex_idx;
 
 window.onload = function init() {
+    const load_file = document.getElementById('load-file');
+    const web_gl = document.getElementById('web-gl');
     const canvas = document.getElementById('square-canvas');
     const save_btn = document.getElementById('save-btn');
     const rotate = document.getElementById('rotate');
@@ -27,7 +29,22 @@ window.onload = function init() {
     const b = document.getElementById('b');
     const rgb_all = document.getElementById('rgb-all');
     const radioButtons = document.querySelectorAll('input[name="choice"]')
+
+    // READ FILE
+    load_file.onchange = function(e) {
+        const fr = new FileReader();
+        fr.readAsText(e.target.files[0]);
+        fr.onload = function() {
+            vertexData = JSON.parse(fr.result.split('\r\n')[0]);
+            colors = JSON.parse(fr.result.split('\r\n')[2]);
+            web_gl.hidden = false;
+            load_file.hidden = true;
+            // render
+            render(gl, program);
+        };
+    }
     
+    // create gl
     const gl = canvas.getContext('webgl');
     if (!gl) {
         throw new Error('WebGL not supported');
