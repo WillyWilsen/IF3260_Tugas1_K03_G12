@@ -6,6 +6,8 @@ var vertexData = [
     -0.5, -0.5,
     -0.5, 0.5
 ];
+var interval;
+var vertex_idx;
 
 window.onload = function init() {
     const canvas = document.getElementById('square-canvas');
@@ -52,11 +54,53 @@ window.onload = function init() {
     gl.vertexAttribPointer(positionLocation, 2, gl.FLOAT, false, 0, 0);
     gl.useProgram(program);
 
-    const interval = setInterval(function() {
+    // render
+    render(gl, vertexData);
+
+    // interval for rotate
+    interval = setInterval(function() {
         vertexData = rotate(vertexData, 1);
         // render
         render(gl, vertexData);
     }, 10);
+
+    canvas.onmouseenter = function() {
+        clearInterval(interval);
+    };
+
+    canvas.onmouseleave = function() {
+        interval = setInterval(function() {
+            vertexData = rotate(vertexData, 1);
+            // render
+            render(gl, vertexData);
+        }, 10);
+    }
+
+
+    // slider for corner point
+    canvas.onmousedown = function(e) {
+        x = ((e.clientX - e.target.offsetLeft - canvas.width / 2) / (canvas.width / 2)).toFixed(2);
+        y = ((-1) * (e.clientY - e.target.offsetTop - canvas.height / 2) / (canvas.height / 2)).toFixed(2);
+        console.log(x)
+        console.log(y)
+        for (let i = 0; i < vertexData.length; i += 2) {
+            if ((x >= vertexData[i].toFixed(2) - 0.05 && x <= vertexData[i].toFixed(2) + 0.05) 
+            && (y >= vertexData[i + 1].toFixed(2) - 0.05 && y <= vertexData[i + 1].toFixed(2) + 0.05)) {
+                vertex_idx = i;
+            }
+        }
+    }
+
+    canvas.onmouseup = function(e) {
+        if (vertex_idx) {
+            x = (e.clientX - e.target.offsetLeft - canvas.width / 2) / (canvas.width / 2);
+            y = (-1) * (e.clientY - e.target.offsetTop - canvas.height / 2) / (canvas.height / 2);
+            vertexData[vertex_idx] = x;
+            vertexData[vertex_idx + 1] = y;
+            render(gl, vertexData);
+            vertex_idx = null;
+        }
+    }
 }
 
 function rotate(vertexData, angle) {
