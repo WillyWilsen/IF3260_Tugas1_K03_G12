@@ -11,6 +11,7 @@ var vertex_idx;
 
 window.onload = function init() {
     const canvas = document.getElementById('square-canvas');
+    const save_btn = document.getElementById('save-btn');
     const gl = canvas.getContext('webgl');
 
     if (!gl) {
@@ -35,7 +36,7 @@ window.onload = function init() {
     const fragmentShader = gl.createShader(gl.FRAGMENT_SHADER);
     gl.shaderSource(fragmentShader, `
     void main() {
-        gl_FragColor = vec4(${Math.random()}, ${Math.random()}, ${Math.random()}, 1);
+        gl_FragColor = vec4(1, 1, 1, 1);
     }
     `);
     gl.compileShader(fragmentShader);
@@ -98,6 +99,18 @@ window.onload = function init() {
             render(gl, vertexData);
             vertex_idx = null;
         }
+    }
+
+    // save file
+    save_btn.onclick = function() {
+        var vertexString = '';
+        for (let i = 0; i < vertexData.length; i += 2) {
+            vertexString += `${vertexData[i]} ${vertexData[i + 1]}\n`
+        }
+        const a = document.createElement('a');
+        a.href = window.URL.createObjectURL(new Blob([vertexString], {type: 'text/plain'}));
+        a.download = 'square.txt';
+        a.click();
     }
 }
 
