@@ -149,8 +149,42 @@ window.onload = function init() {
         if (getChoice(radioButtons) === "move-corner" && vertex_idx != null) {
             x = (e.clientX - e.target.offsetLeft - canvas.width / 2) / (canvas.width / 2);
             y = (-1) * (e.clientY - e.target.offsetTop - canvas.height / 2) / (canvas.height / 2);
+            for (let i = 0; i < vertexData.length; i += 2) {
+                if (i !== vertex_idx) {
+                    if (vertexData[i] === vertexData[vertex_idx]) {
+                        vertexData[i] = x;
+                        x_idx = i;
+                    } else {
+                        if (vertexData[i + 1] === vertexData[vertex_idx + 1]) {
+                            vertexData[i + 1] = y;
+                            y_idx = i;
+                        } else {
+                            not_chosen_idx = i;
+                        }
+                    }
+                }
+            }
             vertexData[vertex_idx] = x;
             vertexData[vertex_idx + 1] = y;
+            x_length = Math.abs(vertexData[vertex_idx] - vertexData[y_idx]);
+            y_length = Math.abs(vertexData[vertex_idx + 1] - vertexData[x_idx + 1]);
+            if (y_length > x_length) {
+                if (Math.abs(vertexData[vertex_idx + 1] - (vertexData[x_idx + 1] - (y_length - x_length))) === x_length) {
+                    vertexData[x_idx + 1] = vertexData[x_idx + 1] - (y_length - x_length);
+                    vertexData[not_chosen_idx + 1] = vertexData[not_chosen_idx + 1] - (y_length - x_length);
+                } else {
+                    vertexData[x_idx + 1] = vertexData[x_idx + 1] + (y_length - x_length);
+                    vertexData[not_chosen_idx + 1] = vertexData[not_chosen_idx + 1] + (y_length - x_length);
+                }
+            } else {
+                if (Math.abs(vertexData[vertex_idx] - (vertexData[y_idx] - (x_length - y_length))) === y_length) {
+                    vertexData[y_idx] = vertexData[y_idx] - (x_length - y_length);
+                    vertexData[not_chosen_idx] = vertexData[not_chosen_idx] - (x_length - y_length);
+                } else {
+                    vertexData[y_idx] = vertexData[y_idx] + (x_length - y_length);
+                    vertexData[not_chosen_idx] = vertexData[not_chosen_idx] + (x_length - y_length);
+                }
+            }
             // render
             render(gl, program);
             vertex_idx = null;
