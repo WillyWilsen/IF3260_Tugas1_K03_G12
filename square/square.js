@@ -4,12 +4,15 @@ var colors;
 var is_rotating;
 var interval;
 var vertex_idx;
+var do_translation;
+var x, y;
 
 window.onload = function init() {
     const load_file = document.getElementById('load-file');
     const web_gl = document.getElementById('web-gl');
     const canvas = document.getElementById('square-canvas');
     const save_btn = document.getElementById('save-btn');
+    const translation = document.getElementById('translation');
     const rotate = document.getElementById('rotate');
     const move_corner = document.getElementById('move-corner');
     const color_corner = document.getElementById('color-corner');
@@ -114,6 +117,15 @@ window.onload = function init() {
         is_rotating = false;
     }
 
+    translation.onclick = function() {
+        clearInterval(interval);
+        r.value = '';
+        g.value = '';
+        b.value = '';
+        rgb_form.hidden = true;
+        is_rotating = false;
+    }
+
     canvas.onmousedown = function(e) {
         // MOVE CORNER POINT (MOUSE DOWN)
         if (getChoice(radioButtons) === "move-corner") {
@@ -140,6 +152,22 @@ window.onload = function init() {
                         render(gl, program);
                     }
                 }   
+            }
+        // TRANSLATION (MOUSE DOWN)
+        } else if (getChoice(radioButtons) == "translation") {
+            x = ((e.clientX - e.target.offsetLeft - canvas.width / 2) / (canvas.width / 2)).toFixed(2);
+            y = ((-1) * (e.clientY - e.target.offsetTop - canvas.height / 2) / (canvas.height / 2)).toFixed(2);
+            square_area = (getLength(vertexData[0], vertexData[1], vertexData[2], vertexData[3]))**2;
+            var area = 0;
+            for (let i = 0; i < vertexData.length; i += 2) {
+                var a_length = getLength(x, y, vertexData[i % vertexData.length], vertexData[(i + 1) % vertexData.length]);
+                var b_length = getLength(x, y, vertexData[(i + 2) % vertexData.length], vertexData[(i + 3) % vertexData.length]);
+                var c_length = getLength(vertexData[i % vertexData.length], vertexData[(i + 1) % vertexData.length], vertexData[(i + 2) % vertexData.length], vertexData[(i + 3) % vertexData.length]);
+                area += calculateTriangleArea(a_length, b_length, c_length);
+            }
+            if (square_area.toFixed(2) === area.toFixed(2)) {
+
+                do_translation = true;
             }
         }
     }
@@ -188,6 +216,19 @@ window.onload = function init() {
             // render
             render(gl, program);
             vertex_idx = null;
+        
+        } else if (getChoice(radioButtons) === "translation" && do_translation) {
+            x_drop = (e.clientX - e.target.offsetLeft - canvas.width / 2) / (canvas.width / 2);
+            y_drop = (-1) * (e.clientY - e.target.offsetTop - canvas.height / 2) / (canvas.height / 2);
+            x_translation = x_drop - x;
+            y_translation = y_drop - y;
+            for (let i = 0; i < vertexData.length; i += 2) {
+                vertexData[i] += x_translation;
+                vertexData[i + 1] += y_translation;
+            }
+            // render
+            render(gl, program);
+            do_translation = false;
         }
     }
 
@@ -239,6 +280,15 @@ function getChoice(radioButtons) {
 
 function isValidRGB(r, g, b) {
     return r.value >= 0 && r.value <= 255 && g.value >= 0 && g.value <= 255 && b.value >= 0 && b.value <= 255;
+}
+
+function getLength(x1, y1, x2, y2) {
+    return ((x2 - x1)**2 + (y2 - y1)**2)**0.5;
+}
+
+function calculateTriangleArea(a, b, c) {
+    const s = (a + b + c) / 2;
+    return (s * (s - a) * (s - b) * (s - c))**0.5;
 }
 
 function rotateVertex(vertexData, angle) {
