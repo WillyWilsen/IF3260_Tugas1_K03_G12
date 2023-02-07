@@ -132,6 +132,7 @@ window.onload = function init() {
             if (isValidRGB(r, g, b)) {
                 x = ((e.clientX - e.target.offsetLeft - canvas.width / 2) / (canvas.width / 2)).toFixed(2);
                 y = ((-1) * (e.clientY - e.target.offsetTop - canvas.height / 2) / (canvas.height / 2)).toFixed(2);
+                console.log(vertexData);
                 for (let i = 0; i < vertexData.length; i += 2) {
                     if ((x >= vertexData[i].toFixed(2) - 0.05 && x <= vertexData[i].toFixed(2) + 0.05) 
                     && (y >= vertexData[i + 1].toFixed(2) - 0.05 && y <= vertexData[i + 1].toFixed(2) + 0.05)) {
@@ -147,6 +148,27 @@ window.onload = function init() {
         } else if (getChoice(radioButtons) == "translation") {
             x = ((e.clientX - e.target.offsetLeft - canvas.width / 2) / (canvas.width / 2)).toFixed(2);
             y = ((-1) * (e.clientY - e.target.offsetTop - canvas.height / 2) / (canvas.height / 2)).toFixed(2);
+        // ADD CORNER
+        } else if (getChoice(radioButtons) == "add-corner") {
+            x = ((e.clientX - e.target.offsetLeft - canvas.width / 2) / (canvas.width / 2)).toFixed(2);
+            y = ((-1) * (e.clientY - e.target.offsetTop - canvas.height / 2) / (canvas.height / 2)).toFixed(2);
+            vertexData.push(parseFloat(x), parseFloat(y));
+            colors.push(1, 1, 1);
+            // render
+            render(gl, program);
+        // DELETE CORNER
+        } else if (getChoice(radioButtons) == "delete-corner") {
+            x = ((e.clientX - e.target.offsetLeft - canvas.width / 2) / (canvas.width / 2)).toFixed(2);
+            y = ((-1) * (e.clientY - e.target.offsetTop - canvas.height / 2) / (canvas.height / 2)).toFixed(2);
+            for (let i = 0; i < vertexData.length; i += 2) {
+                if ((x >= vertexData[i].toFixed(2) - 0.05 && x <= vertexData[i].toFixed(2) + 0.05) 
+                && (y >= vertexData[i + 1].toFixed(2) - 0.05 && y <= vertexData[i + 1].toFixed(2) + 0.05)) {
+                    vertexData.splice(i, 2);
+                    colors.splice(i / 2 * 3, 3);
+                    //
+                    render(gl, program);
+                }
+            }
         }
     }
 
