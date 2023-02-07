@@ -88,9 +88,6 @@ window.onload = function init() {
     // ROTATE
     rotate.onclick = function() {
         if (!is_rotating) {
-            r.value = '';
-            g.value = '';
-            b.value = '';
             rgb_form.hidden = true;
             is_rotating = true;
             interval = setInterval(function() {
@@ -102,10 +99,7 @@ window.onload = function init() {
     }
 
     move_corner.onclick = function() {
-        clearInterval(interval);
-        r.value = '';
-        g.value = '';
-        b.value = '';
+        clearInterval(interval); 
         rgb_form.hidden = true;
         is_rotating = false;
     }
@@ -118,9 +112,6 @@ window.onload = function init() {
 
     translation.onclick = function() {
         clearInterval(interval);
-        r.value = '';
-        g.value = '';
-        b.value = '';
         rgb_form.hidden = true;
         is_rotating = false;
     }
