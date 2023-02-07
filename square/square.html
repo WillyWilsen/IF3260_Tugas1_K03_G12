@@ -13,14 +13,20 @@
         </canvas>
         <br>
         <input type="radio" value="translation" name="choice" id="translation">Translation<br>
-        <input type="radio" value="rotate" name="choice" id="rotate">Rotate<br>
+        <input type="radio" value="dilation" name="choice" id="dilation">Dilation<br>
+        <div id="dilation-form" hidden>
+            <span>0.01</span><input type="range" id="dilation-range" min="0.01" value="1" max="2" step="0.01" oninput="document.getElementById('dilation-value').innerHTML = this.value"><span>2</span>
+            <p>Dilation: <span id="dilation-value">1</span></p>
+            <button id="dilation-btn">Apply</button>
+            <br>
+        </div>
         <input type="radio" value="move-corner" name="choice" id="move-corner">Move Corner<br>
         <input type="radio" value="color-corner" name="choice" id="color-corner">Color Corner<br>
         <div id="rgb-form" hidden>
-            <p>Interval: 0 - 255</p>
-            <input type="number" placeholder="Red" style="width: 50px;" id="r">
-            <input type="number" placeholder="Green" style="width: 50px;" id="g">
-            <input type="number" placeholder="Blue" style="width: 50px;" id="b">
+            <span>0</span><input type="range" placeholder="Red" id="r" min="0" max="255" value="0" oninput="document.getElementById('r-value').innerHTML = this.value"><span>255</span>
+            <span>0</span><input type="range" placeholder="Green" id="g" min="0" max="255" value="0" oninput="document.getElementById('g-value').innerHTML = this.value"><span>255</span>
+            <span>0</span><input type="range" placeholder="Blue" id="b" min="0" max="255" value="0" oninput="document.getElementById('b-value').innerHTML = this.value"><span>255</span>
+            <p>RGB: (<span id="r-value">0</span>, <span id="g-value">0</span>, <span id="b-value">0</span>)</p>
             <button id="rgb-all">All Corner</button>
         </div>
         <br>

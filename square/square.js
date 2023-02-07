@@ -1,5 +1,6 @@
 // vertexData
 var vertexData;
+var old_vertex;
 var colors;
 var is_rotating;
 var interval;
@@ -13,9 +14,13 @@ window.onload = function init() {
     const canvas = document.getElementById('square-canvas');
     const save_btn = document.getElementById('save-btn');
     const translation = document.getElementById('translation');
-    const rotate = document.getElementById('rotate');
+    const dilation = document.getElementById('dilation');
     const move_corner = document.getElementById('move-corner');
     const color_corner = document.getElementById('color-corner');
+    const dilation_form = document.getElementById('dilation-form');
+    const dilation_range = document.getElementById('dilation-range');
+    const dilation_value = document.getElementById('dilation-value');
+    const dilation_button = document.getElementById('dilation-btn');
     const rgb_form = document.getElementById('rgb-form');
     const r = document.getElementById('r');
     const g = document.getElementById('g');
@@ -86,44 +91,41 @@ window.onload = function init() {
     }
     gl.useProgram(program);
 
-    // ROTATE
-    rotate.onclick = function() {
-        if (!is_rotating) {
-            r.value = '';
-            g.value = '';
-            b.value = '';
-            rgb_form.hidden = true;
-            is_rotating = true;
-            interval = setInterval(function() {
-                vertexData = rotateVertex(vertexData, 1);
-                // render
-                render(gl, program);
-            }, 10);
-        }
+    dilation.onclick = function() {
+        rgb_form.hidden = true;
+        dilation_form.hidden = false;
+        old_vertex = null;
     }
 
     move_corner.onclick = function() {
-        clearInterval(interval);
-        r.value = '';
-        g.value = '';
-        b.value = '';
         rgb_form.hidden = true;
-        is_rotating = false;
+        dilation_range.value = 1;
+        dilation_value.innerHTML = 1;
+        dilation_form.hidden = true;
     }
 
     color_corner.onclick = function() {
-        clearInterval(interval);
         rgb_form.hidden = false;
-        is_rotating = false;
+        dilation_range.value = 1;
+        dilation_value.innerHTML = 1;
+        dilation_form.hidden = true;
     }
 
     translation.onclick = function() {
-        clearInterval(interval);
-        r.value = '';
-        g.value = '';
-        b.value = '';
         rgb_form.hidden = true;
-        is_rotating = false;
+        dilation_range.value = 1;
+        dilation_value.innerHTML = 1;
+        dilation_form.hidden = true;
+    }
+
+    // DILATION
+    dilation_button.onclick = function() {
+        if (!old_vertex) {
+            old_vertex = [...vertexData];
+        }
+        vertexData = multiply(old_vertex, dilation_range.value);
+        // render
+        render(gl, program);
     }
 
     canvas.onmousedown = function(e) {
@@ -291,12 +293,10 @@ function calculateTriangleArea(a, b, c) {
     return (s * (s - a) * (s - b) * (s - c))**0.5;
 }
 
-function rotateVertex(vertexData, angle) {
-    const radians = (angle * Math.PI) / 180.0;
+function multiply(vertex, k) {
     const newVertex = [];
-    for (let i = 0; i < vertexData.length; i += 2) {
-        newVertex.push(Math.cos(radians) * vertexData[i] - Math.sin(radians) * vertexData[i + 1]);
-        newVertex.push(Math.sin(radians) * vertexData[i] + Math.cos(radians) * vertexData[i + 1]);
+    for (let i = 0; i < vertex.length; i++) {
+        newVertex.push(vertex[i] * k);
     }
     return newVertex;
 }
