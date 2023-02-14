@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="index.css">
+    <script src="helper.js" defer></script>
+    <script src="line.js" defer></script>
+    <script src="square.js" defer></script>
+    <script src="polygon.js" defer></script>
+    <script src="selected.js" defer></script>
+    <script src="preview.js" defer></script>
+    <script src="global.js" defer></script>
+    <script src="tool.js" defer></script>
+    <script src="index.js" defer></script>
+    <script src="color.js" defer></script>
+    <script src="line-button.js" defer> </script>
+    <script src="square-button.js" defer></script>
+    <script src="polygon-button.js" defer></script>
+</head>
+<body>
+    <div class="div-canvas">
+        <canvas id="canvas">
+
+        </canvas>
+    </div>
+    <div class="vertical buttons">
+        <div>
+            Gambar Objek Baru
+        </div>
+        <div class="horizontal">
+            <div>
+                <button id="line-btn">
+                    Line
+                </button>
+            </div>
+            <div>
+                <button id="square-btn">
+                    Square
+                </button>
+            </div>
+        </div>
+        <div class="horizontal">
+            <div>
+                <button id="rectangle-btn">
+                    Rectangle
+                </button>
+            </div>
+            <div>
+                <button id="polygon-btn">
+                    Polygon
+                </button>
+            </div>
+        </div>
+        <div>
+            Tool Type
+        </div>
+        <div class="horizontal">
+            <div>
+                Tool State:
+            </div>
+            <div id="tool-state">
+                Move
+            </div>
+        </div>
+        <div class="horizontal">
+            <button id="rotate-btn">
+                Rotate
+            </button>
+            <button id="move-btn">
+                Move
+            </button>
+            <button id="scale-btn">
+                Scale
+            </button>
+            <button id="select-btn">
+                Select
+            </button>
+            <button id="color-btn">
+                Color
+            </button>
+        </div>
+        <div class="vertical" id="color-tool">
+            <div>
+                Color Tool
+            </div>
+            <div class="horizontal">
+                <div>
+                    Red
+                </div>
+                <div>
+                    <input type="range" min="0" max="255" id="red">
+                </div>
+            </div>
+            <div class="horizontal">
+                <div>
+                    Green
+                </div>
+                <div>
+                    <input type="range" min="0" max="255" id="green">
+                </div>
+            </div>
+            <div class="horizontal">
+                <div>
+                    Blue
+                </div>
+                <div>
+                    <input type="range" min="0" max="255" id="blue">
+                </div>
+            </div>
+        </div>
+        <div>
+            Util
+        </div>
+        <div class="vertical">
+            <div class="horizontal">
+                <input type="text">
+                <button>
+                    Export
+                </button>
+            </div>
+            <input type="file" value="Pilih File">
+            <button>
+                Import
+            </button>
+            <button>
+                Help
+            </button>
+        </div>
+    </div>
+</body>
+</html>

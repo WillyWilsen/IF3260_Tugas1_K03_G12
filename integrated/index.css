@@ -1,0 +1,33 @@
+html, body {
+    margin: 0;
+    padding: 0;
+}
+
+canvas {
+    background-color: lightgrey;
+    width: 100%;
+    height: 100%;
+}
+
+.div-canvas {
+    aspect-ratio: 1/1;
+    height: 100vh;
+}
+
+body {
+    display: flex;
+}
+
+.horizontal {
+    display: flex;
+    flex-direction: row;
+}
+
+.vertical {
+    display: flex;
+    flex-direction: column;
+}
+
+.buttons {
+    align-items: center;
+}
