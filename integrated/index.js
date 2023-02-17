@@ -96,7 +96,6 @@ canvas.addEventListener("mousedown", (event) => {
             if(selected.objectIndex !== -1) {
                 const chosenObject = object[selected.objectIndex]
                 chosenObject.addPoint(convertedPoint)
-                console.log("test")
             }
         }
     }

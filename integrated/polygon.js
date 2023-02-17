@@ -242,6 +242,9 @@ class Polygon {
         this.color.push(1)
         this.color.push(1)
         this.color.push(1)
+        const convexHull = new ConvexHull(this.vertexes, this.color)
+        this.vertexes = convexHull.vertexes;
+        this.color = convexHull.color;
         // const closestPoint = this.getClosestPoint(newPointLocation)
         // let insertIdx = 0
         // if(closestPoint[0].index < closestPoint[1].index) {
