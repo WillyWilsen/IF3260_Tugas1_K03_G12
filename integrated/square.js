@@ -20,6 +20,7 @@ class Square {
      */
 
     constructor() {
+        this.class = "Square"
         this.length = 1
 
         //this variable stores only x, y

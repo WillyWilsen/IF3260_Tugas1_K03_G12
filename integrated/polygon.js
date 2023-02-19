@@ -20,6 +20,7 @@ class Polygon {
      */
 
     constructor() {
+        this.class = "Polygon"
         this.length = 1
 
         //this variable stores only x, y

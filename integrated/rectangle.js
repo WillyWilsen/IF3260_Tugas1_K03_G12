@@ -20,6 +20,7 @@ class Rectangle {
    */
 
   constructor() {
+      this.class = "Rectangle"
       this.length = 1
 
       //this variable stores only x, y

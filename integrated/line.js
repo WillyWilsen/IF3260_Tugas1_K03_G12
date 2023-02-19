@@ -19,6 +19,7 @@ class Line {
      */
     extraProperty = {}
     constructor() {
+        this.class = "Line"
         this.length = 1
 
         //this variable stores only x, y

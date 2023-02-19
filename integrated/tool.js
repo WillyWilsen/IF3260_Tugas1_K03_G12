@@ -4,9 +4,11 @@ const moveBtn = document.getElementById("move-btn")
 const scaleBtn = document.getElementById("scale-btn")
 const selectBtn = document.getElementById("select-btn")
 const colorBtn = document.getElementById("color-btn")
+const exportBtn = document.getElementById("export-btn")
 
 const colorTool = document.getElementById("color-tool")
 colorTool.style.display = "none"
+const exportFilename = document.getElementById("export-filename")
 
 /**
  * enum for all possible tool state
@@ -59,4 +61,8 @@ colorBtn.addEventListener("click", () => {
     toolState = ToolState.Color
     toolStateDisplay.innerText = "Color"
     colorTool.style.display = "block"
+})
+
+exportBtn.addEventListener("click", () => {
+    canvas_data.save(exportFilename.value)
 })
