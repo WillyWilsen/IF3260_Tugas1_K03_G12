@@ -6,7 +6,6 @@
 squareBtn.addEventListener("click", () => {
     const square = new Square()
     square.init(gl)
-    canvas_data.add(square)
 
     let pointChosen = -1
     let squareChosen = false

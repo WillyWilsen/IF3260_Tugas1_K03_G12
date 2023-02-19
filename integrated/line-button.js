@@ -6,7 +6,6 @@
 lineBtn.onclick = () => {
     const line = new Line()
     line.init(gl)
-    canvas_data.add(line)
 
     let pointChosenLine = -1
     let lineChosen = false

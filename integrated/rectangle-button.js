@@ -6,7 +6,6 @@
 rectangleBtn.addEventListener("click", () => {
   const rectangle = new Rectangle()
   rectangle.init(gl)
-  canvas_data.add(rectangle)
 
   let pointChosen = -1
   let rectangleChosen = false

@@ -5,6 +5,7 @@ const scaleBtn = document.getElementById("scale-btn")
 const selectBtn = document.getElementById("select-btn")
 const colorBtn = document.getElementById("color-btn")
 const exportBtn = document.getElementById("export-btn")
+const importBtn = document.getElementById("import-btn")
 
 const colorTool = document.getElementById("color-tool")
 colorTool.style.display = "none"
@@ -64,5 +65,12 @@ colorBtn.addEventListener("click", () => {
 })
 
 exportBtn.addEventListener("click", () => {
-    canvas_data.save(exportFilename.value)
+    const a = document.createElement('a');
+    a.href = window.URL.createObjectURL(new Blob([JSON.stringify(object)], {type: 'text/plain'}));
+    a.download = `${exportFilename.value}.txt`;
+    a.click();
+})
+
+importBtn.addEventListener("click", () => {
+
 })

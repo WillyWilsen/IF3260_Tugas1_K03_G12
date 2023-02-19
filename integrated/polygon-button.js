@@ -6,7 +6,6 @@
 polygonBtn.addEventListener("click", () => {
     const polygon = new Polygon()
     polygon.init(gl)
-    canvas_data.add(polygon)
 
     let pointChosen = -1
     let polygonChosen = false

@@ -28,5 +28,3 @@ const resetSelected = () => {
 Array.prototype.insert = function ( index, ...items ) {
     this.splice( index, 0, ...items );
 };
-
-const canvas_data = new CanvasData();
