@@ -19,7 +19,7 @@ class Line {
      */
     extraProperty = {}
     constructor() {
-        this.class = "Line"
+        this.type = "Line"
         this.length = 1
 
         //this variable stores only x, y
@@ -56,6 +56,12 @@ class Line {
         this.program = undefined
         this.vertexShader = undefined
         this.fragmentShader = undefined
+    }
+
+    set(length, color, vertexes) {
+        this.length = length
+        this.color = color
+        this.vertexes = vertexes
     }
 
     /**

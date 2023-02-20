@@ -10,6 +10,7 @@ const importBtn = document.getElementById("import-btn")
 const colorTool = document.getElementById("color-tool")
 colorTool.style.display = "none"
 const exportFilename = document.getElementById("export-filename")
+const importFile = document.getElementById("import-file")
 
 /**
  * enum for all possible tool state
@@ -72,5 +73,17 @@ exportBtn.addEventListener("click", () => {
 })
 
 importBtn.addEventListener("click", () => {
-
+    if (importFile) {
+        const fr = new FileReader();
+        fr.readAsText(importFile.files[0]);
+        fr.onload = function() {
+            const result = JSON.parse(fr.result)
+            for (let i = 0; i < result.length; i++) {
+                const obj = new (eval(result[i].type))();
+                obj.init(gl)
+                obj.set(result[i].length, result[i].color, result[i].vertexes)
+                object.push(obj)
+            }
+        };
+    }
 })

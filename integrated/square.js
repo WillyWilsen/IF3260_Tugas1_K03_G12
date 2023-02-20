@@ -20,7 +20,7 @@ class Square {
      */
 
     constructor() {
-        this.class = "Square"
+        this.type = "Square"
         this.length = 1
 
         //this variable stores only x, y
@@ -61,6 +61,12 @@ class Square {
         this.program = undefined
         this.vertexShader = undefined
         this.fragmentShader = undefined
+    }
+
+    set(length, color, vertexes) {
+        this.length = length
+        this.color = color
+        this.vertexes = vertexes
     }
 
     /**

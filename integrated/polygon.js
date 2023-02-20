@@ -20,7 +20,7 @@ class Polygon {
      */
 
     constructor() {
-        this.class = "Polygon"
+        this.type = "Polygon"
         this.length = 1
 
         //this variable stores only x, y
@@ -61,6 +61,12 @@ class Polygon {
         this.program = undefined
         this.vertexShader = undefined
         this.fragmentShader = undefined
+    }
+
+    set(length, color, vertexes) {
+        this.length = length
+        this.color = color
+        this.vertexes = vertexes
     }
 
     /**

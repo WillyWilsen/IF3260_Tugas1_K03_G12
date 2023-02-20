@@ -20,7 +20,7 @@ class Rectangle {
    */
 
   constructor() {
-      this.class = "Rectangle"
+      this.type = "Rectangle"
       this.length = 1
 
       //this variable stores only x, y
@@ -63,6 +63,12 @@ class Rectangle {
       this.program = undefined
       this.vertexShader = undefined
       this.fragmentShader = undefined
+  }
+
+  set(length, color, vertexes) {
+    this.length = length
+    this.color = color
+    this.vertexes = vertexes
   }
 
   /**
