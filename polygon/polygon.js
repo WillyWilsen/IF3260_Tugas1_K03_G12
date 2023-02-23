@@ -132,7 +132,7 @@ window.onload = function init() {
             if (isValidRGB(r, g, b)) {
                 x = ((e.clientX - e.target.offsetLeft - canvas.width / 2) / (canvas.width / 2)).toFixed(2);
                 y = ((-1) * (e.clientY - e.target.offsetTop - canvas.height / 2) / (canvas.height / 2)).toFixed(2);
-                console.log(vertexData);
+                // console.log(vertexData);
                 for (let i = 0; i < vertexData.length; i += 2) {
                     if ((x >= vertexData[i].toFixed(2) - 0.05 && x <= vertexData[i].toFixed(2) + 0.05) 
                     && (y >= vertexData[i + 1].toFixed(2) - 0.05 && y <= vertexData[i + 1].toFixed(2) + 0.05)) {

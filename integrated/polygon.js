@@ -269,6 +269,11 @@ class Polygon {
         // this.color.insert(convertedColorIdx, 1)
     }
 
+    deletePoint(pointIndex) {
+        this.vertexes.splice(pointIndex * 2, 2);
+        this.color.splice(pointIndex * 3, 3);
+    }
+
     onClick(mousePoint) {
         for(let i = 0; i < this.onClickEvent.length; ++i) {
             this.onClickEvent[i](this, mousePoint)

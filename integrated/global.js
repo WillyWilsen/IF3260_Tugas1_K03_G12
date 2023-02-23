@@ -22,7 +22,7 @@ setInterval(() => {
         }
         selectedCircle.setRadius(selectedCircle.getRadius() + changes)
         selectedCircle.setPosition(selectedCircle.getPosition())
-        console.log(selectedCircle.getRadius())
+        // console.log(selectedCircle.getRadius())
     }
 }, 10)
 

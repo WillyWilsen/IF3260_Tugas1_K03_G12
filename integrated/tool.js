@@ -4,6 +4,7 @@ const moveBtn = document.getElementById("move-btn")
 const scaleBtn = document.getElementById("scale-btn")
 const selectBtn = document.getElementById("select-btn")
 const colorBtn = document.getElementById("color-btn")
+const deleteBtn = document.getElementById("delete-btn")
 const exportBtn = document.getElementById("export-btn")
 const importBtn = document.getElementById("import-btn")
 
@@ -22,7 +23,8 @@ const ToolState = Object.freeze({
     Move: Symbol("move"),
     Scale: Symbol("scale"),
     Select: Symbol("select"),
-    Color: Symbol("color")
+    Color: Symbol("color"),
+    Delete: Symbol("delete")
 })
 
 let toolState = ToolState.Move
@@ -63,6 +65,12 @@ colorBtn.addEventListener("click", () => {
     toolState = ToolState.Color
     toolStateDisplay.innerText = "Color"
     colorTool.style.display = "block"
+})
+
+deleteBtn.addEventListener("click", () => {
+    toolState = ToolState.Delete
+    toolStateDisplay.innerText = "Delete"
+    colorTool.style.display = "none"
 })
 
 exportBtn.addEventListener("click", () => {
@@ -199,6 +207,28 @@ importBtn.addEventListener("click", () => {
                         }
 
                         /**
+                         * fungsi ini memeriksa vertex manakah dari polygon yang diklik dan menghapusnya
+                         * @param {Polygon} self 
+                         * @param {JSON} mousePoint 
+                         */
+                        const polygonClickDeleteAction = (self, mousePoint) => {
+                            const linePoints = self.getPoints()
+
+                            for(let i = 0; i < linePoints.length; ++i) {
+                                const temp = linePoints[i]
+                                const diffY = Math.abs(temp.y - mousePoint.y)
+                                const diffX = Math.abs(temp.x - mousePoint.x)
+
+                                if(diffY <= 0.05 && diffX <= 0.05) {
+                                    selected.objectIndex = objectIdx
+                                    selected.pointIndex = i
+                                    const chosenObject = object[selected.objectIndex]
+                                    chosenObject.deletePoint(selected.pointIndex)
+                                }
+                            }
+                        }
+
+                        /**
                          * Menambahkan callback kepada polygon
                          * di callback inilah dihandle function mana yang dipanggil tergantung tool
                          */
@@ -213,6 +243,8 @@ importBtn.addEventListener("click", () => {
                                 polygonClickScaleAction(self, mousePoint)
                             } else if(toolState === ToolState.Select) {
                                 polygonClickSelectAction(self, mousePoint)
+                            } else if(toolState === ToolState.Delete) {
+                                polygonClickDeleteAction(self, mousePoint)
                             }
                         })
 

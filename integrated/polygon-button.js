@@ -121,6 +121,28 @@ polygonBtn.addEventListener("click", () => {
     }
 
     /**
+     * fungsi ini memeriksa vertex manakah dari polygon yang diklik dan menghapusnya
+     * @param {Polygon} self 
+     * @param {JSON} mousePoint 
+     */
+    const polygonClickDeleteAction = (self, mousePoint) => {
+        const linePoints = self.getPoints()
+
+        for(let i = 0; i < linePoints.length; ++i) {
+            const temp = linePoints[i]
+            const diffY = Math.abs(temp.y - mousePoint.y)
+            const diffX = Math.abs(temp.x - mousePoint.x)
+
+            if(diffY <= 0.05 && diffX <= 0.05) {
+                selected.objectIndex = objectIdx
+                selected.pointIndex = i
+                const chosenObject = object[selected.objectIndex]
+                chosenObject.deletePoint(selected.pointIndex)
+            }
+        }
+    }
+
+    /**
      * Menambahkan callback kepada polygon
      * di callback inilah dihandle function mana yang dipanggil tergantung tool
      */
@@ -135,6 +157,8 @@ polygonBtn.addEventListener("click", () => {
             polygonClickScaleAction(self, mousePoint)
         } else if(toolState === ToolState.Select) {
             polygonClickSelectAction(self, mousePoint)
+        } else if(toolState === ToolState.Delete) {
+            polygonClickDeleteAction(self, mousePoint)
         }
     })
 
