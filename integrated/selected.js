@@ -85,4 +85,16 @@ class Selected {
             this.vertexes.push(this.position.y + temp.y)
         }
     }
+
+    getPosition() {
+        return this.position
+    }
+
+    getRadius() {
+        return this.radius
+    }
+
+    setRadius(newRadius) {
+        this.radius = newRadius
+    }
 }
