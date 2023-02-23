@@ -18,6 +18,10 @@ const rectangleBtn = document.getElementById("rectangle-btn")
  */
 const polygonBtn = document.getElementById("polygon-btn")
 
+document.getElementById("clear").onclick = () => {
+    object.length = 0
+}
+
 
 /**
  * drawing all of the objects every frame
