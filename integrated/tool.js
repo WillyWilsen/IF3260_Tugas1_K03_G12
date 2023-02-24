@@ -90,7 +90,6 @@ importBtn.addEventListener("click", () => {
                 const obj = new (eval(result[i].type))();
                 obj.init(gl)
                 obj.set(result[i].length, result[i].color, result[i].vertexes)
-                object.push(obj)
                 if(obj instanceof Polygon) {
                     (() => {
                         let pointChosen = -1
@@ -1121,8 +1120,9 @@ importBtn.addEventListener("click", () => {
                             rectangleChosen = false
 
                         })
-                    })()
+                    })()   
                 }
+                object.push(obj)
             }
         };
     }
