@@ -30,6 +30,12 @@
 
 ## 2D Web Based CAD (Computer-Aided Design)
 
+### Table of contents
+* [Overview](#overview)
+* [How to Run](#how-to-run)
+* [Models Sample](#models-sample)
+* [Checklist dan Pembagian Tugas](#checklist-dan-pembagian-tugas)
+
 ### Overview
 
 <img
@@ -48,6 +54,12 @@ Selain itu, terdapat juga button untuk melakukan pembersihan kanvas serta button
 ### How to Run
 1. Buka folder src
 2. Jalankan `index.html`
+
+### Models Sample
+<div style="display:flex; flex-direction:row;">
+    <img src="assets/model-4.png" width=300 />
+    <img src="assets/model-5.png" width=300 />
+</div>
 
 ### Checklist dan Pembagian Tugas
 <table>
