@@ -55,7 +55,7 @@ Selain itu, terdapat juga button untuk melakukan export dan import file. Button 
     <tr>
         <td align="center">Spesifikasi</td>
         <td align="center">Terselesaikan</td>
-        <td align="center">Oleh</td>
+        <td width="30%" align="center">Oleh</td>
     </tr>
     <tr>
         <td align="center">Mengubah panjang garis</td>
