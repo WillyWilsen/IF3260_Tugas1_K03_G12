@@ -45,6 +45,10 @@ Selain itu, terdapat juga button untuk melakukan pembersihan kanvas serta button
 
 </p>
 
+### How to Run
+1. Buka folder src
+2. Jalankan `index.html`
+
 ### Checklist dan Pembagian Tugas
 <table>
     <tr>
