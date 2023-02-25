@@ -39,9 +39,9 @@
     >
 
 <p align="justify">
-Pengguna dapat berkreasi dengan melakukan interaksi dengan canvas melalui tools yang ada pada sebelah kanan. Untuk mengatur jenis objek yang akan digambar, pengguna dapat memilih sendiri objek yang ingin digambarkan melalui button yang tertera (button line, square, rectangle, dan polygon). Selain itu, terdapat juga fungsi-fungsi tambahan (rotate, move, scale, select, color, dan delete) untuk melakukan perubahan pada gambar yang telah dicetak oleh pengguna, untuk selengkapnya, silahkan baca pada dokumentasi pada folder doc.
+Pengguna dapat berkreasi melalui interaksi dengan canvas menggunakan berbagai tools yang tersedia pada bagian sebelah kanan dari kanvas. Untuk menentukan jenis objek yang akan digambar, pengguna dapat memilih sendiri objek yang ingin digambarkan melalui button yang tertera (button line, square, rectangle, dan polygon). Terdapat pula berbagai fungsi tambahan (rotate, move, scale, select, color, dan delete) yang dapat membantu pengguna dalam melakukan perubahan pada gambar yang telah dicetak pada kanvas, untuk selengkapnya mengenai fungsi tambahan, silahkan baca pada dokumentasi/laporan pada folder doc.
 
-Selain itu, terdapat juga button untuk melakukan export dan import file. Button export seperti namanya, akan melakukan export dari objek-objek yang ada pada canvas ke dalam sebuah file bertipe .txt. Pada button import, terdapat button bantuan berupa choose file yang bertujuan agar pengguna dapat menentukan file apa yang ingin ia load pada canvas.
+Selain itu, terdapat juga button untuk melakukan pembersihan kanvas serta button untuk melakukan export dan import file. Button export seperti namanya, memungkinkan pengguna untuk melakukan export dari objek-objek yang ada pada kanvas ke dalam sebuah file bertipe .txt. Sementara itu, button import didampingi oleh button choose file agar pengguna dapat menentukan file apa yang ingin di-load ke dalam kanvas. Ketika button import ditekan, kanvas akan dibersihkan dahulu sebelum melakukan import model. Hal ini dilakukan agar objek-objek lama tidak muncul pada model yang baru diimport.
 
 </p>
 
@@ -86,6 +86,11 @@ Selain itu, terdapat juga button untuk melakukan export dan import file. Button 
         <td align="center">Menggerakkan salah satu titik sudut dengan slider atau drag and drop pada setiap model</td>
         <td align="center"><strong>✓</strong></td>
         <td align="center">13520131 - Steven</td>
+    </tr>
+    <tr>
+        <td align="center">Mengubah warna salah satu atau semua titik sudut/td>
+        <td align="center"><strong>✓</strong></td>
+        <td align="center">135201131 - Steven</td>
     </tr>
     <tr>
         <td align="center">Melakukan save and load model</td>
