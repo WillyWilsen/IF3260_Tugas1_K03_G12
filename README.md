@@ -88,7 +88,7 @@ Selain itu, terdapat juga button untuk melakukan pembersihan kanvas serta button
         <td align="center">13520131 - Steven</td>
     </tr>
     <tr>
-        <td align="center">Mengubah warna salah satu atau semua titik sudut/td>
+        <td align="center">Mengubah warna salah satu atau semua titik sudut</td>
         <td align="center"><strong>✓</strong></td>
         <td align="center">135201131 - Steven</td>
     </tr>
