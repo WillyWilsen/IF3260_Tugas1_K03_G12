@@ -56,10 +56,9 @@ Selain itu, terdapat juga button untuk melakukan pembersihan kanvas serta button
 2. Jalankan `index.html`
 
 ### Models Sample
-<div style="display:flex; flex-direction:row;">
-    <img src="assets/model-4.png" width=300 />
-    <img src="assets/model-5.png" width=300 />
-</div>
+<img src="assets/model-4.png" width=300 />
+<br>
+<img src="assets/model-5.png" width=300 />
 
 ### Checklist dan Pembagian Tugas
 <table>
