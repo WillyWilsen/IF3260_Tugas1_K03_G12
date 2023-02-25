@@ -81,6 +81,10 @@ exportBtn.addEventListener("click", () => {
 })
 
 importBtn.addEventListener("click", () => {
+    // Remove any object on the canvas
+    // before loading the imported model
+    object.length = 0
+    
     if (importFile) {
         const fr = new FileReader();
         fr.readAsText(importFile.files[0]);
